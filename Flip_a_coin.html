@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Flip a coin!</title>
+    <script src="https://randojs.com/2.0.0.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAKsXoAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAACEREREAAAACEQAAARAAACIRIREBEAAAIREhEQERAAAhESERAREAACERIREBEQAAIREhEQERAAAhESERAREAACERIREBEQAAIREhEQERAAAhESIiARAAAAIiERERAAAAAAAiIgAAAAAAAAAAAAAADwHwAAwAcAAIAHAAAAAwAAAAMAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAwAAAAMAAIAHAADABwAA" rel="icon" type="image/x-icon" />
+    <style>
+        @font-face{
+    font-family: random;
+    src: url("Fonts/spraypaint.ttf");
+}
+h1{
+    font-family: random;
+    text-align: center;
+    font-size:7vw;
+    color:#221921;
+    margin-top: 0;
+}
+#heads_tails{
+    
+    width:100%;
+    display: block;
+    
+}
+.w3-btn{
+    margin-left: auto;
+    margin-right:auto;
+    width:30%;
+    display:block;
+    margin-top: 10px;
+   
+
+}
+#toss_button,#tryAgain{
+    width:50%;
+    
+}
+body{
+    background-image:url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.visme.co%2Fwp-content%2Fuploads%2F2017%2F07%2F50-Beautiful-and-Minimalist-Presentation-Backgrounds-019.jpg&f=1&nofb=1 );
+    background-size: cover;
+    font-family: random;
+    font-size: 2vw;
+}
+iframe{
+    display: block;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    font-size:5vw;
+    color:gold;
+    font-family: random;
+    text-align: center;
+}
+#result{
+    font-size: 3vw;
+}
+
+
+    </style>
+</head>
+    <body>
+        <h1> Flip a Coin </h1>
+        <iframe src="heads.png" style="border:none;" width="274" height="274" id="holder">
+
+        </iframe>
+        <h2 id="result"></h2>
+ 
+        <button type="button" class="w3-btn w3-round-xxlarge w3-teal" onclick="TryAgain()" id="tryAgain" style="visibility: hidden;">TryAgain</button>
+        <div id="heads_tails">
+        <button type="button" class="w3-btn w3-round-xxlarge w3-green" onclick="TossACoin();" id="toss_button" >TOSS</button>
+       
+        </div>
+        <script>
+            var check = 0;
+            var timer;
+            var toss;
+            var image=false;
+            var starter;
+         function TryAgain()
+         {
+            
+           check=0;
+           starter="";
+           toss="";
+           document.getElementById("result").innerHTML="";
+           document.getElementById("tryAgain").style.visibility="hidden";
+           document.getElementById("result").innerHTML="";
+           window.location.reload();
+           
+           
+
+         }
+            function TossACoin(){
+            
+               
+                var changer = document.getElementById("holder");
+                if(image==false)
+                {
+                    
+                    changer.src="tails.png";
+                    image=true;
+                }
+                else
+                {
+                    
+                    changer.src="heads.png";
+                    image=false;
+                }        
+                if(check==0)
+                toss = onClick().toString();
+                       
+                
+                timer = setTimeout(function(){TossACoin()},500);
+                check++;
+                if(toss=="heads")
+                {
+                    if(check>=6)
+                    {
+                        clearTimeout(timer);
+                        
+                   
+                            document.getElementById("tryAgain").style.visibility="visible";
+                            document.getElementById("result").innerHTML="Heads!";
+                           
+                       
+                         
+                    }
+                }
+                else
+                {
+                if(check>=5)
+                {
+                    clearTimeout(timer);
+                       
+                        document.getElementById("tryAgain").style.visibility="visible";
+                        document.getElementById("result").innerHTML="Tails!";
+                       
+
+                }
+
+                }
+            }
+               
+                
+            
+            function onClick(){
+                var a = rando(0,1);
+            
+            if(a==0)
+            {
+                return "heads";
+            }
+            else
+            {
+                return "tails";
+            }
+            }
+            
+        </script>
+
+    </body>
+</html>
